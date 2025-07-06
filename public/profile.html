@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - Free Matrimony</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Complete Your Profile</h1>
+            <p>Please fill out your complete profile to continue</p>
+        </header>
+        
+        <main>
+            <div class="profile-form-container">
+                <form id="profileForm">
+                    <div class="form-section">
+                        <h4>Personal Information</h4>
+                        <div class="floating-label">
+                            <input type="text" id="fullName" placeholder=" " required>
+                            <label for="fullName">Full Name</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="tel" id="profilePhoneNumber" placeholder=" " required>
+                            <label for="profilePhoneNumber">Phone Number (+1234567890)</label>
+                        </div>
+                        <div class="floating-label">
+                            <select id="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                            <label for="gender">Gender</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="number" id="age" placeholder=" " min="18" max="80" required>
+                            <label for="age">Age</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="place" placeholder=" " required>
+                            <label for="place">Place</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="district" placeholder=" " required>
+                            <label for="district">District</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="state" placeholder=" " required>
+                            <label for="state">State</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="country" placeholder=" " required>
+                            <label for="country">Country</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Current Address</h4>
+                        <div class="checkbox-container">
+                            <input type="checkbox" id="sameAddress" checked>
+                            <label for="sameAddress">Same as Personal Information address</label>
+                        </div>
+                        <div id="currentAddressFields" style="display: none;">
+                            <div class="floating-label">
+                                <input type="text" id="currentPlace" placeholder=" ">
+                                <label for="currentPlace">Current Place</label>
+                            </div>
+                            <div class="floating-label">
+                                <input type="text" id="currentDistrict" placeholder=" ">
+                                <label for="currentDistrict">Current District</label>
+                            </div>
+                            <div class="floating-label">
+                                <input type="text" id="currentState" placeholder=" ">
+                                <label for="currentState">Current State</label>
+                            </div>
+                            <div class="floating-label">
+                                <input type="text" id="currentCountry" placeholder=" ">
+                                <label for="currentCountry">Current Country</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Religious Details</h4>
+                        <div class="floating-label">
+                            <select id="religion" required>
+                                <option value="">Select Religion</option>
+                                <option value="hinduism">Hinduism</option>
+                                <option value="islam">Islam</option>
+                                <option value="christianity">Christianity</option>
+                                <option value="sikhism">Sikhism</option>
+                                <option value="buddhism">Buddhism</option>
+                                <option value="jainism">Jainism</option>
+                                <option value="judaism">Judaism</option>
+                                <option value="zoroastrianism">Zoroastrianism</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <label for="religion">Religion</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="subGroup" placeholder=" " required>
+                            <label for="subGroup">Sub Group / Caste / Community</label>
+                        </div>
+                        <div class="floating-label">
+                            <textarea id="religiousDetails" placeholder=" " rows="5" required></textarea>
+                            <label for="religiousDetails">Religious Details & Expectations</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Personal Details</h4>
+                        <div class="floating-label">
+                            <input type="text" id="education" placeholder=" " required>
+                            <label for="education">Education</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="profession" placeholder=" " required>
+                            <label for="profession">Profession</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="complexion" placeholder=" " required>
+                            <label for="complexion">Complexion</label>
+                        </div>
+                        <div class="floating-label">
+                            <select id="height" required>
+                                <option value="">Select Height</option>
+                                <option value="4'6\" (137 cm)">4'6" (137 cm)</option>
+                                <option value="4'7\" (140 cm)">4'7" (140 cm)</option>
+                                <option value="4'8\" (142 cm)">4'8" (142 cm)</option>
+                                <option value="4'9\" (145 cm)">4'9" (145 cm)</option>
+                                <option value="4'10\" (147 cm)">4'10" (147 cm)</option>
+                                <option value="4'11\" (150 cm)">4'11" (150 cm)</option>
+                                <option value="5'0\" (152 cm)">5'0" (152 cm)</option>
+                                <option value="5'1\" (155 cm)">5'1" (155 cm)</option>
+                                <option value="5'2\" (157 cm)">5'2" (157 cm)</option>
+                                <option value="5'3\" (160 cm)">5'3" (160 cm)</option>
+                                <option value="5'4\" (163 cm)">5'4" (163 cm)</option>
+                                <option value="5'5\" (165 cm)">5'5" (165 cm)</option>
+                                <option value="5'6\" (168 cm)">5'6" (168 cm)</option>
+                                <option value="5'7\" (170 cm)">5'7" (170 cm)</option>
+                                <option value="5'8\" (173 cm)">5'8" (173 cm)</option>
+                                <option value="5'9\" (175 cm)">5'9" (175 cm)</option>
+                                <option value="5'10\" (178 cm)">5'10" (178 cm)</option>
+                                <option value="5'11\" (180 cm)">5'11" (180 cm)</option>
+                                <option value="6'0\" (183 cm)">6'0" (183 cm)</option>
+                                <option value="6'1\" (185 cm)">6'1" (185 cm)</option>
+                                <option value="6'2\" (188 cm)">6'2" (188 cm)</option>
+                                <option value="6'3\" (191 cm)">6'3" (191 cm)</option>
+                                <option value="6'4\" (193 cm)">6'4" (193 cm)</option>
+                                <option value="6'5\" (196 cm)">6'5" (196 cm)</option>
+                                <option value="6'6\" (198 cm)">6'6" (198 cm)</option>
+                                <option value="6'7\" (201 cm)">6'7" (201 cm)</option>
+                                <option value="6'8\" (203 cm)">6'8" (203 cm)</option>
+                            </select>
+                            <label for="height">Height</label>
+                        </div>
+                        <div class="floating-label">
+                            <select id="maritalStatus" required>
+                                <option value="">Marital Status</option>
+                                <option value="never-married">Never Married</option>
+                                <option value="divorced">Divorced</option>
+                                <option value="widow">Widow</option>
+                            </select>
+                            <label for="maritalStatus">Marital Status</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="number" id="numChildren" placeholder=" " min="0">
+                            <label for="numChildren">Number of Children</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Family Information</h4>
+                        <div class="floating-label">
+                            <input type="text" id="fatherDetails" placeholder=" " required>
+                            <label for="fatherDetails">Father's Details (Name, Job, etc.)</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="motherDetails" placeholder=" " required>
+                            <label for="motherDetails">Mother's Details (Name, Job, etc.)</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="siblingsDetails" placeholder=" " required>
+                            <label for="siblingsDetails">Siblings Details (Number, Ages, Occupations)</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>About Me</h4>
+                        <div class="floating-label">
+                            <textarea id="bio" placeholder=" " rows="5" required></textarea>
+                            <label for="bio">Tell us about yourself, your interests, hobbies, and what makes you unique...</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Partner Preferences</h4>
+                        <div class="floating-label">
+                            <input type="text" id="preferredAge" placeholder=" " required>
+                            <label for="preferredAge">Preferred Age Range (e.g., 25-30)</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="preferredPlace" placeholder=" " required>
+                            <label for="preferredPlace">Preferred Place</label>
+                        </div>
+                        <div class="floating-label">
+                            <input type="text" id="preferredProfession" placeholder=" " required>
+                            <label for="preferredProfession">Preferred Profession/Education</label>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4>Partner Expectations</h4>
+                        <div class="floating-label">
+                            <textarea id="expectations" placeholder=" " rows="5" required></textarea>
+                            <label for="expectations">Describe your expectations from your life partner, values you seek, and your vision for marriage...</label>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn">Complete Registration</button>
+                        <button type="button" id="backToLogin" class="btn-secondary">Back to Login</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <div id="activationModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Account Activation Required</h3>
+            <p>Your profile has been created successfully! To activate your account, please send the following message:</p>
+            
+            <div class="activation-message">
+                <div class="message-box">
+                    <span id="activationMessage">ACTIVATE SECRET_ACTIVATE_HASH</span>
+                    <button id="copyMessage" class="copy-btn" title="Copy to clipboard">📋</button>
+                </div>
+            </div>
+            
+            <div class="contact-options">
+                <p><strong>Send this message via:</strong></p>
+                <div class="contact-buttons">
+                    <button id="smsBtn" class="contact-btn">📱 SMS</button>
+                    <button id="whatsappBtn" class="contact-btn">💬 WhatsApp</button>
+                </div>
+                <p class="contact-note">Send from your contactable mobile number that you want to share with matches.</p>
+            </div>
+            
+            <div class="admin-contact">
+                <p><strong>Admin Contact:</strong></p>
+                <p id="adminNumber">+1234567890</p>
+            </div>
+            
+            <button id="activationDone" class="btn">I've Sent the Message</button>
+        </div>
+    </div>
+
+    <script src="firebase-config.js"></script>
+    <script src="validation.js"></script>
+    <script src="floating-labels.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>

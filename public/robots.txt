@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /dashboard.html
+Allow: /styles.css
+
+# Disallow private areas
+Disallow: /firebase-config.js
+Disallow: /script.js
+Disallow: /validation.js
+Disallow: /dashboard.js
+
+# Sitemap location
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
